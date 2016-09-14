@@ -1,3 +1,9 @@
+package com.patterns.strategy;
+
+import com.patterns.strategy.Quack;
+import com.patterns.strategy.Duck;
+import com.patterns.strategy.FlyWithWings;
+
 /**
  * Created by karenvega on 8/09/16.
  */

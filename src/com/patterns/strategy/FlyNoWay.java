@@ -1,3 +1,7 @@
+package com.patterns.strategy;
+
+import com.patterns.strategy.FlyBehaviour;
+
 /**
  * Created by karenvega on 8/09/16.
  */
