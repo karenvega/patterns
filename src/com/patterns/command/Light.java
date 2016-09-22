@@ -1,6 +1,7 @@
 package com.patterns.command;
 
 /**
+ * The Vendor Classes are used to perform the actual home-automation work of controlling devices. Here, we are using the Light class as an example.
  * Created by karenvega on 21/09/16.
  */
 public class Light {

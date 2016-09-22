@@ -4,12 +4,13 @@ package com.patterns.command;
  * The RemoteControl manages a set of Command objects, one per button. When a button is pressed, the corresponding ButtonWasPushed() method is called, which invokes these actions by calling the execute() method
  * Created by karenvega on 21/09/16.
  */
-public class RemoteControl {
+public class RemoteControlWithUndo {
 
     Command[] onCommands;
     Command[] offCommands;
+    Command undoCommand;
 
-    public RemoteControl(String algo) {
+    public RemoteControlWithUndo(String algo) {
         System.out.println("Inicializando...");
         onCommands = new Command[7];
         offCommands = new Command[7];
@@ -19,6 +20,7 @@ public class RemoteControl {
             onCommands[i] = noCommand;
             offCommands[i] = noCommand;
         }
+        undoCommand = noCommand;
     }
 
     public void setCommand(int slot, Command onCommand, Command offCommand) {
@@ -28,18 +30,23 @@ public class RemoteControl {
 
     public void onButtonWasPressed(int slot) {
         onCommands[slot].execute();
+        undoCommand = onCommands[slot];
     }
 
     public void offButtonWasPressed(int slot) {
         offCommands[slot].execute();
+        undoCommand = offCommands[slot];
+    }
+
+    public void undoButtonWasPressed() {
+        undoCommand.undo();
     }
 
     public String toString() {
-        System.out.println("ToString");
         StringBuffer sb = new StringBuffer();
-        sb.append(System.getProperty("line.separator") + "------ Remote Control -------" + System.getProperty("line.separator"));
+        sb.append("\n------ Remote Control -------\n");
         for (int i = 0; i < onCommands.length; i++) {
-            sb.append("[slot " + i + "]" + onCommands[i].getClass().getName() + "     " + offCommands[i].getClass().getName() + System.getProperty("line.separator"));
+            sb.append("[slot " + i + "]" + onCommands[i].getClass().getName() + "     " + offCommands[i].getClass().getName() + "\n");
         }
         return sb.toString();
     }
